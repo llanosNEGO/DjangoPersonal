@@ -12,9 +12,19 @@ def segunda(request):
     return HttpResponse ("<h1>Segunda Fase</h1>")
 
 def Proyecto(request):
-    proyecto = list(Proyectos.objects.values())
-    return JsonResponse (proyecto , safe = False)
+    #proyecto = list(Proyectos.objects.values())
+    proyecto = Proyectos.objects.all()
+    return render(request, 'proyecto.html' , {
+        'proyectos':proyecto
+    })
 
-def Tarea(request, mensaje):
-    mensaje = Tareas.objects.get(titulo = mensaje)   
-    return HttpResponse(" titulo es: %s" %mensaje.titulo)
+def Tarea(request):
+    #mensaje = Tareas.objects.get(titulo = mensaje)   
+    mensaje = 'Pendiente desarrollar fronted para POO'
+    return render(request, 'tarea.html' , {
+        'mensaje' : mensaje
+
+    })
+
+def index(request):
+    return render(request, 'index.html')
